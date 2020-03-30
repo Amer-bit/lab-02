@@ -15,7 +15,6 @@ $(document).ready(function () {
 
     Horns.prototype.displayContent = function () {
 
-        $('.para').text(this.name);
         let $hornClone = $("#photo-template").clone();
         $hornClone.find('h2').text(this.name);
         $hornClone.find('img').attr('src', this.imgpic);
