@@ -1,4 +1,4 @@
-
+'use strict'
 $(document).ready(function () {
     function Horns(newhornObj) {
 
@@ -7,11 +7,14 @@ $(document).ready(function () {
         this.disc = newhornObj.description;
         this.keywords = newhornObj.keyword;
         this.horns = newhornObj.horns;
-        Horns.all.push(this)
+        
     }
     Horns.all = [];
     let option = [];
-    console.log(option);
+    console.log(Horns.all);
+    var selectedKeyword
+    
+    
 
     
     Horns.prototype.displayContent = function () {
@@ -23,24 +26,38 @@ $(document).ready(function () {
 
         $("main").append($hornClone);
         $hornClone.removeAttr("id");
-        $hornClone.attr("id", this.name);
+        $hornClone.attr("class", this.keywords);
+        
+        
+        
 
     }
 
 
-let displaySelectedItem = $('select').on('change',function(){
-    console.log(displaySelectedItem.val());
-    $('section').css('display','none')
-    //    Horns.prototype.displaySelectedItm2= function(){
-        if('unicorn' === displaySelectedItem.val()){
-            console.log('match');
-           let $hey= $("<p></p>").text("love ")
-          $('main').append($hey)
+// let displaySelectedItem = $('select').on('change',function(){
+//     // console.log(displaySelectedItem.val());
+//     // $('section').css('display','none')
+//     // //    Horns.prototype.displaySelectedItm2= function(){
+//     //     if('unicorn' === displaySelectedItem.val()){
+//     //         console.log('match');
+//     //        let $hey= $("<p></p>").text("love ")
+//     //       $('main').append($hey)
+//     for(let i = 0; i < option; i++){
+
+//     }
        
-   }
-// }
+//    }
+// // }
     
-})
+// })
+// function showSelectedHorns(selectedKeyword){
+//     $('section').css('display','none')
+//     option.forEach((value, index)=>{
+
+        
+//     })
+
+// }
 
 
     const readJson = () => {
@@ -48,6 +65,9 @@ let displaySelectedItem = $('select').on('change',function(){
             hornData.forEach((imgItem) => {
 
                 let newhornObj = new Horns(imgItem);
+                Horns.all.push(newhornObj)
+                console.log(newhornObj.keywords);
+                
 
                 if (!(option.includes(imgItem.keyword))) {
                     option.push(imgItem.keyword)
@@ -59,12 +79,34 @@ let displaySelectedItem = $('select').on('change',function(){
 
                 }
                 newhornObj.displayContent();
-                // newhornObj.displaySelectedItm2()
+
+               
+                
                 
                 
             });
             
         });
     };
+    
     readJson();
-});
+    
+    let displaySelectedItem = $('select').on('change',function(){
+        
+        $('section').hide()
+        selectedKeyword = $('select').find(":selected").text()
+       Horns.all.forEach( value =>{
+         
+         if(value.keywords === selectedKeyword){
+            
+            $(`.${value.keywords}`).show()           
+       }
+           
+       })
+        console.log(selectedKeyword);
+         
+       
+      
+    }) 
+
+})               
