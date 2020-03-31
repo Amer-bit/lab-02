@@ -11,7 +11,7 @@ $(document).ready(function () {
     }
     Horns.all = [];
     let option = [];
-    console.log(Horns.all);
+    // console.log(Horns.all);
     var selectedKeyword
     
     
@@ -66,7 +66,7 @@ $(document).ready(function () {
 
                 let newhornObj = new Horns(imgItem);
                 Horns.all.push(newhornObj)
-                console.log(newhornObj.keywords);
+                // console.log(newhornObj.keywords);
                 
 
                 if (!(option.includes(imgItem.keyword))) {
@@ -103,7 +103,7 @@ $(document).ready(function () {
        }
            
        })
-        console.log(selectedKeyword);
+        // console.log(selectedKeyword);
          
        
       
